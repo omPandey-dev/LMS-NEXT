@@ -1,13 +1,15 @@
-import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, LogOut, Moon, Settings, Sun, User } from 'lucide-react';
-import sidebarMenu from '@/data/sidebarMenu.json';
-import { Button } from '@/components/ui/Button';
-import { useTheme } from '@/components/theme-context';
 
-interface SidebarProps {
-  userRole?: string;
-  onLogout: () => void;
-}
+  import { Link, useLocation } from 'react-router-dom';
+  import { LayoutDashboard, LogOut, Moon, Settings, Sun, User } from 'lucide-react';
+  import sidebarMenu from '@/data/sidebarMenu.json';
+  import { Button } from '@/components/ui/Button';
+  import { useTheme } from '@/components/theme-context';
+   
+  interface SidebarProps {
+    userRole?: string;
+    onLogout: () => void;
+  }
+   
 
 type IconName = 'LayoutDashboard' | 'Settings' | 'User';
 

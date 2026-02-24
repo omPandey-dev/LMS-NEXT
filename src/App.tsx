@@ -1,6 +1,5 @@
 import { Toaster } from 'sonner';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import ThemeProvider from './components/ThemeProvider';
 import { AuthProvider } from './contexts/AuthContext';
 import ThemeProvider from './components/ThemeProvider';
 import { ProtectedRoute } from './components/layout/ProtectedRoute';
