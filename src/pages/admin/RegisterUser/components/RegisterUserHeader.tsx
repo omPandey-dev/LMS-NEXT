@@ -1,20 +1,7 @@
-import { UserPlus } from 'lucide-react';
-
 export const RegisterUserHeader = () => {
   return (
-    <div className="relative max-w-3xl mx-auto">
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 opacity-10 rounded-2xl blur-3xl"></div>
-      <div className="relative bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-6 shadow-xl">
-        <div className="flex items-center space-x-4">
-          <div className="p-3 bg-white/20 backdrop-blur-sm rounded-xl">
-            <UserPlus className="w-6 h-6 text-white" />
-          </div>
-          <div>
-            <h1 className="text-2xl font-semibold text-white mb-1">Register New User</h1>
-            <p className="text-blue-100 text-sm">Create a new user account for your subscription</p>
-          </div>
-        </div>
-      </div>
+    <div className="mx-auto w-full max-w-5xl rounded-t-2xl border border-b-0 border-gray-200 bg-gray-50 px-6 py-5 dark:border-gray-700 dark:bg-gray-900/80 sm:px-8 sm:py-6">
+      <h1 className="text-2xl font-semibold tracking-tight text-gray-800 dark:text-gray-100 sm:text-3xl">User Registration Form</h1>
     </div>
   );
 };
