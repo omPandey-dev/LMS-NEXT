@@ -1,9 +1,12 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   * {
     box-sizing: border-box;
   }
+
   body {
     @apply bg-white text-gray-900 antialiased transition-colors dark:bg-gray-950 dark:text-gray-100;
     font-feature-settings: "rlig" 1, "calt" 1;
