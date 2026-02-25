@@ -33,7 +33,7 @@ export default function Sidebar({ userRole, onLogout }: SidebarProps) {
   );
 
   return (
-    <aside className="flex w-72 shrink-0 flex-col border-r border-gray-200 bg-white text-gray-900 transition-colors dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
+    <aside className="fixed inset-y-0 left-0 z-30 flex h-screen w-72 flex-col border-r border-gray-200 bg-white text-gray-900 transition-colors dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100">
       <div className="border-b border-gray-200 px-6 py-5 dark:border-gray-700">
         <h1 className="text-xl font-bold">LMS Next</h1>
         <p className="text-xs text-gray-500 dark:text-gray-400">Admin Panel</p>
@@ -42,7 +42,7 @@ export default function Sidebar({ userRole, onLogout }: SidebarProps) {
       <nav className="flex-1 space-y-2 p-4">
         {allowedItems.map((item) => {
           const Icon = iconMap[item.icon];
-          const isActive = location.pathname === item.path;
+          const isActive = location.pathname === item.path || location.pathname.startsWith(`${item.path}/`);
 
           return (
             <Link

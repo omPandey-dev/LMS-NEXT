@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { User } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import Sidebar from '@/components/Sidebar';
 
 interface DashboardLayoutProps {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
@@ -18,11 +18,11 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-50 text-gray-900 transition-colors dark:bg-gray-950 dark:text-gray-100">
+    <div className="min-h-screen bg-gray-50 text-gray-900 transition-colors dark:bg-gray-950 dark:text-gray-100">
       <Sidebar userRole={user?.role} onLogout={handleLogout} />
 
-      <div className="flex-1">
-        <header className="border-b border-gray-200 bg-white px-6 py-4 shadow-sm transition-colors dark:border-gray-700 dark:bg-gray-900">
+      <div className="ml-72 min-h-screen">
+        <header className="sticky top-0 z-20 border-b border-gray-200 bg-white px-6 py-4 shadow-sm transition-colors dark:border-gray-700 dark:bg-gray-900">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold">Welcome back</h2>
             <div className="flex items-center gap-3">
@@ -37,7 +37,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           </div>
         </header>
 
-        <main className="p-6">{children}</main>
+        <main className="p-6">{children ?? <Outlet />}</main>
       </div>
     </div>
   );

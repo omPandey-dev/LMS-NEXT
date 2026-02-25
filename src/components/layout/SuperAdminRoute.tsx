@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 
 interface SuperAdminRouteProps {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export const SuperAdminRoute = ({ children }: SuperAdminRouteProps) => {
@@ -11,9 +11,9 @@ export const SuperAdminRoute = ({ children }: SuperAdminRouteProps) => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <div className="mx-auto h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600"></div>
           <p className="mt-4 text-gray-600">Loading...</p>
         </div>
       </div>
@@ -25,8 +25,8 @@ export const SuperAdminRoute = ({ children }: SuperAdminRouteProps) => {
   }
 
   if (user?.role !== 'SuperAdmin') {
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate to="/home/dashboard" replace />;
   }
 
-  return <>{children}</>;
+  return children ? <>{children}</> : <Outlet />;
 };

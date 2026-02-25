@@ -1,5 +1,6 @@
 import { Toaster } from 'sonner';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import ThemeProvider from './components/ThemeProvider';
 import { AuthProvider } from './contexts/AuthContext';
 import ThemeProvider from './components/ThemeProvider';
 import { ProtectedRoute } from './components/layout/ProtectedRoute';
@@ -21,37 +22,24 @@ function App() {
             <Route path="/" element={<Navigate to="/login" replace />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <DashboardLayout>
-                    <Dashboard />
-                  </DashboardLayout>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/register-user"
-              element={
-                <SuperAdminRoute>
-                  <DashboardLayout>
-                    <RegisterUser />
-                  </DashboardLayout>
-                </SuperAdminRoute>
-              }
-            />
-            <Route
-              path="/settings"
-              element={
-                <ProtectedRoute>
-                  <DashboardLayout>
-                    <Settings />
-                  </DashboardLayout>
-                </ProtectedRoute>
-              }
-            />
-            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+
+            <Route element={<ProtectedRoute />}>
+              <Route path="/home" element={<DashboardLayout />}>
+                <Route index element={<Navigate to="dashboard" replace />} />
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="settings" element={<Settings />} />
+                <Route
+                  path="register-user"
+                  element={
+                    <SuperAdminRoute>
+                      <RegisterUser />
+                    </SuperAdminRoute>
+                  }
+                />
+              </Route>
+            </Route>
+
+            <Route path="*" element={<Navigate to="/home/dashboard" replace />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
