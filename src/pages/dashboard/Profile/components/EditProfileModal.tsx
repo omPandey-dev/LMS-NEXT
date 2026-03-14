@@ -6,7 +6,6 @@ import { toast } from 'sonner';
 import { Modal, ModalFooter } from '@/components/ui/Modal';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
-import { useAuth } from '@/contexts/AuthContext';
 import type { UserInfo } from '@/types';
 
 const profileSchema = z.object({
@@ -24,7 +23,6 @@ interface EditProfileModalProps {
 }
 
 export const EditProfileModal = ({ isOpen, onClose, user }: EditProfileModalProps) => {
-  const { user: currentUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -51,11 +49,11 @@ export const EditProfileModal = ({ isOpen, onClose, user }: EditProfileModalProp
     }
   }, [isOpen, user, reset]);
 
-  const onSubmit = async (data: ProfileFormData) => {
+  const onSubmit = async (_data: ProfileFormData) => {
     setIsLoading(true);
     try {
       // TODO: Replace with actual API call when backend endpoint is available
-      // await profileApi.updateProfile(data);
+      // await profileApi.updateProfile(_data);
       
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
