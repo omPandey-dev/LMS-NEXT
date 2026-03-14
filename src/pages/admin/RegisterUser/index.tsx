@@ -6,7 +6,7 @@ export const RegisterUser = () => {
   const { form, onSubmit, isLoading, isSuperAdmin, availableRoles } = useRegisterUser();
 
   return (
-    <div className="space-y-0">
+    <div className="space-y-4">
       <RegisterUserHeader />
       <RegisterUserForm
         form={form}

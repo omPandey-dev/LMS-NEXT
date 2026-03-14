@@ -1,7 +1,31 @@
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
 import Cookies from 'js-cookie';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_LOCAL_URL || 'http://localhost:5030';
+// Get API URL from environment variables with proper fallback
+const getApiBaseUrl = (): string => {
+  // Check for explicit API base URL first
+  if (import.meta.env.VITE_API_BASE_URL) {
+    return import.meta.env.VITE_API_BASE_URL;
+  }
+  
+  // Check for local URL
+  if (import.meta.env.VITE_LOCAL_URL) {
+    return import.meta.env.VITE_LOCAL_URL;
+  }
+  
+  // Fallback - this should not happen if .env.development is set correctly
+  console.warn('⚠️ No API URL found in environment variables. Using fallback.');
+  return 'http://localhost:5032';
+};
+
+const API_BASE_URL = getApiBaseUrl();
+
+// Debug logging in development
+if (import.meta.env.DEV) {
+  console.log('🔗 API Base URL:', API_BASE_URL);
+  console.log('📝 VITE_API_BASE_URL:', import.meta.env.VITE_API_BASE_URL);
+  console.log('📝 VITE_LOCAL_URL:', import.meta.env.VITE_LOCAL_URL);
+}
 
 class ApiService {
   private instance: AxiosInstance;

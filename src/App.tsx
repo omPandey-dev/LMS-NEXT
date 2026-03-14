@@ -7,8 +7,9 @@ import { SuperAdminRoute } from './components/layout/SuperAdminRoute';
 import { DashboardLayout } from './components/layout/DashboardLayout';
 import { Login } from './pages/auth/Login/index';
 import { Register } from './pages/auth/Register/index';
+import { ForgotPassword } from './pages/auth/ForgotPassword/index';
 import { Dashboard } from './pages/dashboard/Dashboard/index';
-import { Settings } from './pages/dashboard/Settings/index';
+import { Profile } from './pages/dashboard/Profile/index';
 import { RegisterUser } from './pages/admin/RegisterUser/index';
 
 function App() {
@@ -21,12 +22,13 @@ function App() {
             <Route path="/" element={<Navigate to="/login" replace />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
 
             <Route element={<ProtectedRoute />}>
               <Route path="/home" element={<DashboardLayout />}>
                 <Route index element={<Navigate to="dashboard" replace />} />
                 <Route path="dashboard" element={<Dashboard />} />
-                <Route path="settings" element={<Settings />} />
+                <Route path="profile" element={<Profile />} />
                 <Route
                   path="register-user"
                   element={

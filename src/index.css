@@ -8,9 +8,15 @@
   }
 
   body {
-    @apply bg-white text-gray-900 antialiased transition-colors dark:bg-gray-950 dark:text-gray-100;
+    @apply bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 text-slate-800 antialiased transition-colors dark:bg-gray-950 dark:text-gray-100;
     font-feature-settings: "rlig" 1, "calt" 1;
     margin: 0;
     padding: 0;
+  }
+}
+
+@layer utilities {
+  .dark .dark-outlet-gradient {
+    background-image: linear-gradient(to right top, #111828, #131a2d, #141d31, #161f36, #18223b, #18233e, #182441, #182544, #162446, #142448, #122349, #10224b);
   }
 }

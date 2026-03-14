@@ -53,13 +53,13 @@ export const RegisterForm = ({ form, onSubmit, isLoading }: RegisterFormProps) =
         />
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+          <label className="block text-sm font-medium text-slate-700 dark:text-gray-300 mb-1.5">
             Role
           </label>
           <select
             {...register('role')}
-            className={`w-full px-4 py-2.5 rounded-lg border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-              errors.role ? 'border-red-500 focus:ring-red-500' : 'border-gray-300'
+            className={`w-full px-4 py-2.5 rounded-lg border bg-white text-slate-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 ${
+              errors.role ? 'border-rose-400 focus:ring-rose-400' : 'border-blue-200/60 hover:border-blue-300/60 dark:border-gray-600'
             }`}
           >
             <option value="">Select a role</option>
@@ -71,7 +71,7 @@ export const RegisterForm = ({ form, onSubmit, isLoading }: RegisterFormProps) =
             <option value="Parent">Parent</option>
           </select>
           {errors.role && (
-            <p className="mt-1 text-sm text-red-600">{errors.role.message}</p>
+            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.role.message}</p>
           )}
         </div>
 
@@ -82,9 +82,9 @@ export const RegisterForm = ({ form, onSubmit, isLoading }: RegisterFormProps) =
       </form>
 
       <div className="mt-6 text-center">
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-slate-600 dark:text-gray-400">
           Already have an account?{' '}
-          <Link to="/login" className="text-blue-600 hover:text-blue-700 font-medium">
+          <Link to="/login" className="text-purple-600 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors">
             Sign in
           </Link>
         </p>

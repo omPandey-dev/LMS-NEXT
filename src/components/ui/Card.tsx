@@ -8,13 +8,13 @@
    
    export const Card = ({ className, children, ...props }: CardProps) => {
      return (
-       <div
-         className={cn(
-          'rounded-xl border border-gray-100 bg-white p-6 shadow-lg transition-colors dark:border-gray-700 dark:bg-gray-900',
+      <div
+        className={cn(
+          'rounded-xl border border-blue-100/60 bg-white/90 backdrop-blur-sm p-6 shadow-lg shadow-blue-100/20 transition-colors dark:border-gray-700 dark:bg-gray-900 dark:shadow-gray-900/20',
           className,
-         )}
-         {...props}
-       >
+        )}
+        {...props}
+      >
          {children}
        </div>
      );
@@ -38,7 +38,7 @@
    
    export const CardTitle = ({ className, children, ...props }: CardTitleProps) => {
      return (
-      <h3 className={cn('text-2xl font-bold text-gray-900 dark:text-gray-100', className)} {...props}>
+      <h3 className={cn('text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:text-gray-100', className)} {...props}>
          {children}
        </h3>
      );

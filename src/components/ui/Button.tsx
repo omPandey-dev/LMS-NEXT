@@ -15,11 +15,11 @@
 
      const variants = {
       primary:
-        'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl focus:ring-blue-500',
-      secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600',
+        'bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white shadow-lg hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 hover:shadow-xl focus:ring-blue-400 transition-all',
+      secondary: 'bg-gradient-to-r from-slate-100 to-blue-50 text-slate-700 hover:from-slate-200 hover:to-blue-100 focus:ring-slate-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600',
       outline:
-        'border-2 border-blue-600 text-blue-600 hover:bg-blue-50 focus:ring-blue-500 dark:text-blue-400 dark:hover:bg-blue-950/40',
-      ghost: 'text-gray-700 hover:bg-gray-100 focus:ring-gray-500 dark:text-gray-200 dark:hover:bg-gray-800',
+        'border-2 border-blue-400 text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 focus:ring-blue-400 dark:text-blue-400 dark:hover:bg-blue-950/40',
+      ghost: 'text-slate-700 hover:bg-blue-50/60 focus:ring-slate-300 dark:text-gray-200 dark:hover:bg-gray-800',
      };
  
      const sizes = {
