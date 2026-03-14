@@ -7,7 +7,7 @@ export const LoginHeader = () => {
         <BookOpen className="w-8 h-8 text-white" />
       </div>
       <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:text-gray-100 mb-2">Welcome Back</h1>
-      <p className="text-slate-600 dark:text-gray-400">Sign in to your LMS account</p>
+      <p className="text-slate-600 dark:text-gray-400">Sign in to your LMS account CiCd</p>
     </div>
   );
 };
