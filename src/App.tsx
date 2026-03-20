@@ -10,6 +10,7 @@ import { Register } from './pages/auth/Register/index';
 import { ForgotPassword } from './pages/auth/ForgotPassword/index';
 import { Dashboard } from './pages/dashboard/Dashboard/index';
 import { Profile } from './pages/dashboard/Profile/index';
+import { Users } from './pages/dashboard/Users/index';
 import { RegisterUser } from './pages/admin/RegisterUser/index';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
                 <Route index element={<Navigate to="dashboard" replace />} />
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="profile" element={<Profile />} />
+                <Route path="users" element={<Users />} />
                 <Route
                   path="register-user"
                   element={

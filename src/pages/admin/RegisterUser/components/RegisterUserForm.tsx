@@ -31,8 +31,8 @@ export const RegisterUserForm = ({
   } = form;
 
   return (
-    <Card className="mx-auto mt-4 w-full max-w-5xl p-0 overflow-hidden">
-      <form onSubmit={handleSubmit(onSubmit)} className="px-5 py-5 sm:px-6 sm:py-6">
+    <Card className="mx-auto w-full max-w-5xl border-0 shadow-lg p-4 sm:p-5">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2">
           <div>
             <Input
@@ -88,7 +88,7 @@ export const RegisterUserForm = ({
           </div>
         </div>
 
-        <div className="mt-5 rounded-xl border border-blue-100/60 bg-white/70 p-4 backdrop-blur-sm dark:border-gray-700 dark:bg-gray-800/60">
+        <div className="rounded-lg border border-blue-100/60 bg-white/70 p-4 backdrop-blur-sm dark:border-gray-700 dark:bg-gray-800/60">
           {isSuperAdmin ? (
             <p className="flex items-start text-sm text-slate-700 dark:text-gray-200">
               <CheckCircle2 className="mr-2 mt-0.5 h-4 w-4 text-emerald-600 dark:text-emerald-400" />
@@ -101,7 +101,7 @@ export const RegisterUserForm = ({
           )}
         </div>
 
-        <div className="mt-6 flex flex-col gap-3 border-t border-blue-100/60 pt-5 sm:flex-row dark:border-gray-700">
+        <div className="flex flex-col gap-3 border-t border-blue-100/60 pt-4 sm:flex-row dark:border-gray-700">
           <Button type="submit" variant="primary" size="md" isLoading={isLoading} className="min-w-[160px]">
             {isLoading ? 'Registering...' : 'Register User'}
           </Button>

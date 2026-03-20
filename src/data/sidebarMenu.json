@@ -1,4 +1,5 @@
 [
   { "path": "/home/dashboard", "label": "Dashboard", "icon": "LayoutDashboard" },
+  { "path": "/home/users", "label": "All Users", "icon": "User" },
   { "path": "/home/register-user", "label": "Register User", "icon": "Settings", "roles": ["SuperAdmin"] }
 ]
