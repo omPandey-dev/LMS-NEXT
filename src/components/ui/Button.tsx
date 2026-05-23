@@ -11,21 +11,21 @@
    ({ className, variant = 'primary', size = 'md', isLoading, children, disabled, ...props }, ref) => {
 
     const baseStyles =
-      'inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:focus:ring-offset-gray-900';
+      'inline-flex items-center justify-center rounded border font-medium transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-[var(--app-accent)] disabled:cursor-not-allowed disabled:opacity-50';
 
      const variants = {
       primary:
-        'bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white shadow-lg hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 hover:shadow-xl focus:ring-blue-400 transition-all',
-      secondary: 'bg-gradient-to-r from-slate-100 to-blue-50 text-slate-700 hover:from-slate-200 hover:to-blue-100 focus:ring-slate-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600',
+        'border-[var(--app-accent)] bg-[var(--app-accent)] text-white hover:brightness-95',
+      secondary: 'border-[var(--app-border)] bg-[var(--app-panel-muted)] text-[var(--app-text)] hover:bg-[var(--app-hover)]',
       outline:
-        'border-2 border-blue-400 text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 focus:ring-blue-400 dark:text-blue-400 dark:hover:bg-blue-950/40',
-      ghost: 'text-slate-700 hover:bg-blue-50/60 focus:ring-slate-300 dark:text-gray-200 dark:hover:bg-gray-800',
+        'border-[var(--app-border)] bg-transparent text-[var(--app-text-soft)] hover:bg-[var(--app-hover)] hover:text-[var(--app-text)]',
+      ghost: 'border-transparent bg-transparent text-[var(--app-text-soft)] hover:bg-[var(--app-hover)] hover:text-[var(--app-text)]',
      };
  
      const sizes = {
-       sm: 'px-3 py-1.5 text-sm',
-       md: 'px-4 py-2 text-base',
-       lg: 'px-6 py-3 text-lg',
+       sm: 'px-2.5 py-1.5 text-xs',
+       md: 'px-3 py-2 text-xs',
+       lg: 'px-4 py-2.5 text-sm',
      };
  
      return (

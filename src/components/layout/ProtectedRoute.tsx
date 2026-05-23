@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
+import { storage } from '@/utils/storage';
 
 interface ProtectedRouteProps {
   children?: ReactNode;
@@ -8,19 +9,20 @@ interface ProtectedRouteProps {
 
 export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   const { isAuthenticated, isLoading } = useAuth();
+  const hasToken = !!storage.getToken();
 
   if (isLoading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+      <div className="flex min-h-screen items-center justify-center bg-[var(--app-bg)] text-[var(--app-text-soft)]">
         <div className="text-center">
-          <div className="mx-auto h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
+          <div className="mx-auto h-8 w-8 animate-spin rounded-full border-b-2 border-[var(--app-accent)]"></div>
+          <p className="mt-3 text-xs text-[var(--app-muted)]">Loading...</p>
         </div>
       </div>
     );
   }
 
-  if (!isAuthenticated) {
+  if (!hasToken || !isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
 

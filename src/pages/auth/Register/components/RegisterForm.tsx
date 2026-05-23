@@ -20,11 +20,11 @@ export const RegisterForm = ({ form, onSubmit, isLoading }: RegisterFormProps) =
   } = form;
 
   return (
-    <Card className="border-0 shadow-xl">
+    <Card>
       <CardHeader>
-        <CardTitle className="text-xl">Register</CardTitle>
+        <CardTitle>Register</CardTitle>
       </CardHeader>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <Input
           label="Email"
           type="email"
@@ -53,13 +53,13 @@ export const RegisterForm = ({ form, onSubmit, isLoading }: RegisterFormProps) =
         />
 
         <div>
-          <label className="block text-sm font-medium text-slate-700 dark:text-gray-300 mb-1.5">
+          <label className="mb-1.5 block text-xs font-medium text-[var(--app-text-soft)]">
             Role
           </label>
           <select
             {...register('role')}
-            className={`w-full px-4 py-2.5 rounded-lg border bg-white text-slate-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 ${
-              errors.role ? 'border-rose-400 focus:ring-rose-400' : 'border-blue-200/60 hover:border-blue-300/60 dark:border-gray-600'
+            className={`w-full rounded border border-[var(--app-border)] bg-[var(--app-panel)] px-3 py-2 text-sm text-[var(--app-text)] transition-all duration-200 focus:border-[var(--app-accent)] focus:outline-none focus:ring-1 focus:ring-[var(--app-accent)] ${
+              errors.role ? 'border-rose-400 focus:ring-rose-400' : 'hover:border-[var(--app-accent)]'
             }`}
           >
             <option value="">Select a role</option>
@@ -71,20 +71,20 @@ export const RegisterForm = ({ form, onSubmit, isLoading }: RegisterFormProps) =
             <option value="Parent">Parent</option>
           </select>
           {errors.role && (
-            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.role.message}</p>
+            <p className="mt-1 text-xs text-[var(--app-danger)]">{errors.role.message}</p>
           )}
         </div>
 
         <Button type="submit" variant="primary" size="lg" isLoading={isLoading} className="w-full">
-          <UserPlus className="w-5 h-5 mr-2" />
+          <UserPlus className="mr-2 h-4 w-4" />
           Create Account
         </Button>
       </form>
 
       <div className="mt-6 text-center">
-        <p className="text-sm text-slate-600 dark:text-gray-400">
+        <p className="text-sm text-[var(--app-muted)]">
           Already have an account?{' '}
-          <Link to="/login" className="text-purple-600 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors">
+          <Link to="/login" className="font-medium text-[var(--app-accent)] transition-colors hover:brightness-95">
             Sign in
           </Link>
         </p>

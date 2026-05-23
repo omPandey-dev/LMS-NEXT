@@ -1,50 +1,43 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-      
-      {/* Navbar */}
-      <header className="flex justify-between items-center px-8 py-4 bg-white dark:bg-gray-800 shadow">
-        <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
-          LMS Platform
-        </h1>
+    <div className="min-h-screen bg-[var(--app-bg)] text-[var(--app-text)] transition-colors">
+      <header className="flex h-14 items-center justify-between border-b border-[var(--app-border)] bg-[var(--app-shell)] px-4">
+        <h1 className="text-sm font-semibold">LMS Platform</h1>
 
-        <div className="space-x-4">
+        <div className="flex items-center gap-2">
           <Link
             to="/login"
-            className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600"
+            className="px-3 py-1.5 text-xs font-medium text-[var(--app-text-soft)] hover:bg-[var(--app-hover)] hover:text-[var(--app-text)]"
           >
             Login
           </Link>
-
           <Link
             to="/register"
-            className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+            className="border border-[var(--app-accent)] bg-[var(--app-accent)] px-3 py-1.5 text-xs font-medium text-white hover:brightness-95"
           >
             Register
           </Link>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center text-center px-6 py-20">
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-6">
-          Modern Learning Management System
+      <main className="mx-auto flex min-h-[calc(100vh-56px)] max-w-5xl flex-col justify-center px-4 py-10">
+        <p className="mb-3 text-xs font-semibold uppercase text-[var(--app-muted)]">Learning Management System</p>
+        <h2 className="max-w-2xl text-3xl font-semibold tracking-normal text-[var(--app-text)]">
+          Manage learning operations with a focused enterprise console.
         </h2>
-
-        <p className="max-w-2xl text-gray-600 dark:text-gray-400 mb-8">
-          Manage courses, students, instructors and track learning progress
-          efficiently with a powerful and scalable LMS platform.
+        <p className="mt-4 max-w-xl text-sm leading-6 text-[var(--app-text-soft)]">
+          Manage courses, students, instructors, and learning progress from a clean interface built for daily operations.
         </p>
 
         <Link
           to="/register"
-          className="px-6 py-3 bg-blue-600 text-white rounded-xl text-lg font-medium hover:bg-blue-700 transition"
+          className="mt-6 w-fit border border-[var(--app-accent)] bg-[var(--app-accent)] px-4 py-2 text-sm font-medium text-white hover:brightness-95"
         >
           Get Started
         </Link>
-      </section>
+      </main>
     </div>
   );
 }

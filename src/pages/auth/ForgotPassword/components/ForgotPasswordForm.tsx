@@ -132,15 +132,15 @@ export const ForgotPasswordForm = () => {
 
   return (
     <>
-      <Card className="border-0 shadow-xl">
+      <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle className="text-xl flex items-center gap-2">
-              <Lock className="h-5 w-5 text-blue-600" />
+            <CardTitle className="flex items-center gap-2">
+              <Lock className="h-4 w-4 text-[var(--app-accent)]" />
               Forgot Password
             </CardTitle>
             {step > 1 && (
-              <div className="flex items-center gap-1 text-sm text-rose-600 dark:text-rose-400">
+              <div className="flex items-center gap-1 text-xs text-[var(--app-danger)]">
                 <Clock className="h-4 w-4" />
                 <span className="font-mono font-semibold">{formatTime(timeLeft)}</span>
               </div>
@@ -150,9 +150,9 @@ export const ForgotPasswordForm = () => {
 
         {/* Step 1: Enter Email */}
         {step === 1 && (
-          <form onSubmit={emailForm.handleSubmit(handleStep1Submit)} className="space-y-5">
+          <form onSubmit={emailForm.handleSubmit(handleStep1Submit)} className="space-y-4">
             <div>
-              <p className="text-sm text-slate-600 dark:text-gray-400 mb-4">
+              <p className="mb-4 text-sm text-[var(--app-muted)]">
                 Enter your email address and we'll send you an OTP to reset your password.
               </p>
             </div>
@@ -173,7 +173,7 @@ export const ForgotPasswordForm = () => {
             <div className="text-center">
               <Link
                 to="/login"
-                className="inline-flex items-center text-sm text-blue-600 hover:text-purple-600 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+              className="inline-flex items-center text-sm text-[var(--app-accent)] transition-colors hover:brightness-95"
               >
                 <ArrowLeft className="h-4 w-4 mr-1" />
                 Back to Login
@@ -185,16 +185,16 @@ export const ForgotPasswordForm = () => {
         {/* Step 2: Verify OTP - Content shown in modal */}
         {step === 2 && (
           <div className="space-y-4 text-center">
-            <p className="text-sm text-slate-600 dark:text-gray-400">
-              OTP has been sent to <span className="font-medium text-slate-800 dark:text-gray-200">{email}</span>
+            <p className="text-sm text-[var(--app-muted)]">
+              OTP has been sent to <span className="font-medium text-[var(--app-text)]">{email}</span>
             </p>
-            <p className="text-xs text-slate-500 dark:text-gray-500">
+            <p className="text-xs text-[var(--app-muted)]">
               Please check your email and enter the OTP in the modal that opened.
             </p>
             <button
               type="button"
               onClick={() => setIsOtpModalOpen(true)}
-              className="text-sm text-blue-600 hover:text-purple-600 dark:text-blue-400 dark:hover:text-blue-300 transition-colors underline"
+              className="text-sm text-[var(--app-accent)] underline transition-colors hover:brightness-95"
             >
               Open OTP Modal
             </button>
@@ -207,7 +207,7 @@ export const ForgotPasswordForm = () => {
                   emailForm.reset();
                   setTimeLeft(TIMER_DURATION);
                 }}
-                className="text-sm text-slate-600 hover:text-slate-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
+                className="text-sm text-[var(--app-muted)] transition-colors hover:text-[var(--app-text)]"
               >
                 Change Email
               </button>
@@ -217,9 +217,9 @@ export const ForgotPasswordForm = () => {
 
         {/* Step 3: Reset Password */}
         {step === 3 && (
-          <form onSubmit={passwordForm.handleSubmit(handleStep3Submit)} className="space-y-5">
+          <form onSubmit={passwordForm.handleSubmit(handleStep3Submit)} className="space-y-4">
             <div>
-              <p className="text-sm text-slate-600 dark:text-gray-400 mb-4">
+              <p className="mb-4 text-sm text-[var(--app-muted)]">
                 Create a new password for your account.
               </p>
             </div>
@@ -261,10 +261,10 @@ export const ForgotPasswordForm = () => {
       >
         <div className="space-y-4">
           <div className="text-center">
-            <p className="text-sm text-slate-600 dark:text-gray-400 mb-2">
+            <p className="mb-2 text-sm text-[var(--app-muted)]">
               Enter the 6-digit OTP sent to
             </p>
-            <p className="text-sm font-medium text-slate-800 dark:text-gray-200">{email}</p>
+            <p className="text-sm font-medium text-[var(--app-text)]">{email}</p>
           </div>
 
           <div className="flex justify-center py-4">
@@ -277,8 +277,8 @@ export const ForgotPasswordForm = () => {
           </div>
 
           <div className="text-center">
-            <p className="text-xs text-slate-500 dark:text-gray-500">
-              Time remaining: <span className="font-mono font-semibold text-rose-600 dark:text-rose-400">{formatTime(timeLeft)}</span>
+            <p className="text-xs text-[var(--app-muted)]">
+              Time remaining: <span className="font-mono font-semibold text-[var(--app-danger)]">{formatTime(timeLeft)}</span>
             </p>
           </div>
 

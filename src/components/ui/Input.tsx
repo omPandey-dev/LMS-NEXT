@@ -12,24 +12,24 @@
        return (
          <div className="w-full">
            {label && (
-            <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-gray-300">
+            <label className="mb-1.5 block text-xs font-medium text-[var(--app-text-soft)]">
                {label}
              </label>
            )}
            <input
              ref={ref}
              className={cn(
-              'w-full rounded-lg border px-4 py-2.5 transition-all duration-200',
-              'bg-white text-slate-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-400',
-              'disabled:cursor-not-allowed disabled:bg-slate-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:disabled:bg-gray-900',
-               error
+              'w-full rounded border px-3 py-2 text-sm transition-all duration-200',
+              'border-[var(--app-border)] bg-[var(--app-panel)] text-[var(--app-text)] focus:border-[var(--app-accent)] focus:outline-none focus:ring-1 focus:ring-[var(--app-accent)]',
+              'disabled:cursor-not-allowed disabled:bg-[var(--app-panel-muted)] disabled:text-[var(--app-muted)]',
+              error
                  ? 'border-rose-400 focus:ring-rose-400'
-                : 'border-blue-200/60 hover:border-blue-300/60 dark:hover:border-gray-500',
+                : 'hover:border-[var(--app-accent)]',
               className,
              )}
              {...props}
            />
-          {error && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{error}</p>}
+          {error && <p className="mt-1 text-xs text-[var(--app-danger)]">{error}</p>}
          </div>
        );
     },

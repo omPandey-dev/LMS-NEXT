@@ -20,30 +20,28 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const loadUser = () => {
-      if (storage.isAuthenticated()) {
-        const token = storage.getToken();
-        if (token) {
-          const userInfo = getUserFromToken(token);
-          if (userInfo) {
-            // Store role and email separately for easy access
-            if (userInfo.role) {
-              storage.setUserRole(userInfo.role);
-            }
-            if (userInfo.email) {
-              storage.setUserEmail(userInfo.email);
-            }
-            setUser(userInfo);
-          } else {
-            storage.clearAll();
-          }
+      const token = storage.getToken();
+
+      if (token) {
+        const userInfo = getUserFromToken(token);
+        const fallbackUser = {
+          email: storage.getUserEmail(),
+          role: storage.getUserRole(),
+        };
+
+        if (userInfo?.role) {
+          storage.setUserRole(userInfo.role);
         }
+        if (userInfo?.email) {
+          storage.setUserEmail(userInfo.email);
+        }
+
+        setUser(userInfo || fallbackUser);
       } else {
-        // Clear any stale data if no token exists
-        const storedRole = storage.getUserRole();
-        if (storedRole) {
-          storage.clearAll();
-        }
+        storage.clearAll();
+        setUser(null);
       }
+
       setIsLoading(false);
     };
 
@@ -53,17 +51,20 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const login = async (email: string, password: string) => {
     const response = await authApi.login({ email, password });
     storage.setToken(response.token);
-    const userInfo = getUserFromToken(response.token);
-    if (userInfo) {
-      // Store role and email separately for easy access
-      if (userInfo.role) {
-        storage.setUserRole(userInfo.role);
-      }
-      if (userInfo.email) {
-        storage.setUserEmail(userInfo.email);
-      }
-      setUser(userInfo);
+
+    const userInfo = getUserFromToken(response.token) || {
+      email: response.email,
+      role: response.roles?.[0],
+    };
+
+    if (userInfo.role) {
+      storage.setUserRole(userInfo.role);
     }
+    if (userInfo.email) {
+      storage.setUserEmail(userInfo.email);
+    }
+
+    setUser(userInfo);
   };
 
   const logout = () => {
@@ -79,7 +80,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         isLoading,
         login,
         logout,
-        isAuthenticated: !!user && storage.isAuthenticated(),
+        isAuthenticated: storage.isAuthenticated(),
       }}
     >
       {children}

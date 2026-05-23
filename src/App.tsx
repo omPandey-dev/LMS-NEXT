@@ -1,6 +1,7 @@
 import { Toaster } from 'sonner';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContext';
+import type { ReactNode } from 'react';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
 import ThemeProvider from './components/ThemeProvider';
 import { ProtectedRoute } from './components/layout/ProtectedRoute';
 import { SuperAdminRoute } from './components/layout/SuperAdminRoute';
@@ -13,6 +14,16 @@ import { Profile } from './pages/dashboard/Profile/index';
 import { Users } from './pages/dashboard/Users/index';
 import { RegisterUser } from './pages/admin/RegisterUser/index';
 
+const GuestRoute = ({ children }: { children: ReactNode }) => {
+  const { isAuthenticated, isLoading } = useAuth();
+
+  if (!isLoading && isAuthenticated) {
+    return <Navigate to="/home/dashboard" replace />;
+  }
+
+  return <>{children}</>;
+};
+
 function App() {
   return (
     <ThemeProvider>
@@ -21,7 +32,14 @@ function App() {
           <Toaster position="top-center" richColors />
           <Routes>
             <Route path="/" element={<Navigate to="/login" replace />} />
-            <Route path="/login" element={<Login />} />
+            <Route
+              path="/login"
+              element={
+                <GuestRoute>
+                  <Login />
+                </GuestRoute>
+              }
+            />
             <Route path="/register" element={<Register />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
 

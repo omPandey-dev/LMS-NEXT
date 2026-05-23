@@ -39,18 +39,18 @@ export const Modal = ({ isOpen, onClose, title, children, size = 'md', showClose
     >
       <div
         className={cn(
-          'w-full rounded-xl bg-white shadow-2xl transition-all dark:bg-gray-900',
+          'w-full rounded border border-[var(--app-border)] bg-[var(--app-panel)] text-[var(--app-text-soft)] shadow-2xl transition-all',
           sizeClasses[size],
         )}
         onClick={(e) => e.stopPropagation()}
       >
         {(title || showCloseButton) && (
-          <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700">
-            {title && <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{title}</h2>}
+          <div className="flex items-center justify-between border-b border-[var(--app-border)] px-5 py-3">
+            {title && <h2 className="text-sm font-semibold text-[var(--app-text)]">{title}</h2>}
             {showCloseButton && (
               <button
                 onClick={onClose}
-                className="rounded-lg p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-800 dark:hover:text-gray-300"
+                className="p-1 text-[var(--app-muted)] hover:bg-[var(--app-hover)] hover:text-[var(--app-text)]"
                 aria-label="Close modal"
               >
                 <X className="h-5 w-5" />
@@ -71,7 +71,7 @@ interface ModalFooterProps {
 
 export const ModalFooter = ({ children, className }: ModalFooterProps) => {
   return (
-    <div className={cn('mt-6 flex items-center justify-end gap-3 border-t border-gray-200 pt-4 dark:border-gray-700', className)}>
+    <div className={cn('mt-5 flex items-center justify-end gap-3 border-t border-[var(--app-border)] pt-4', className)}>
       {children}
     </div>
   );

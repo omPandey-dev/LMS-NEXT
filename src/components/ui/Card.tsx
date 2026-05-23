@@ -10,7 +10,7 @@
      return (
       <div
         className={cn(
-          'rounded-xl border border-blue-100/60 bg-white/90 backdrop-blur-sm p-6 shadow-lg shadow-blue-100/20 transition-colors dark:border-gray-700 dark:bg-gray-900 dark:shadow-gray-900/20',
+          'rounded border border-[var(--app-border)] bg-[var(--app-panel)] p-4 text-[var(--app-text-soft)] shadow-sm transition-colors',
           className,
         )}
         {...props}
@@ -38,7 +38,7 @@
    
    export const CardTitle = ({ className, children, ...props }: CardTitleProps) => {
      return (
-      <h3 className={cn('text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:text-gray-100', className)} {...props}>
+      <h3 className={cn('text-sm font-semibold text-[var(--app-text)]', className)} {...props}>
          {children}
        </h3>
      );

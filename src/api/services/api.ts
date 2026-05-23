@@ -1,5 +1,9 @@
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
-import Cookies from 'js-cookie';
+import { storage } from '@/utils/storage';
+
+export type ApiRequestConfig = InternalAxiosRequestConfig & {
+  skipAuthRedirect?: boolean;
+};
 
 // Get API URL from environment variables with proper fallback
 const getApiBaseUrl = (): string => {
@@ -45,7 +49,7 @@ class ApiService {
     // Request interceptor - add auth token
     this.instance.interceptors.request.use(
       (config: InternalAxiosRequestConfig) => {
-        const token = Cookies.get('auth_token');
+        const token = storage.getToken();
         if (token && config.headers) {
           config.headers.Authorization = `Bearer ${token}`;
         }
@@ -60,9 +64,11 @@ class ApiService {
     this.instance.interceptors.response.use(
       (response) => response,
       (error) => {
-        if (error.response?.status === 401) {
+        const requestConfig = error.config as ApiRequestConfig | undefined;
+
+        if (error.response?.status === 401 && !requestConfig?.skipAuthRedirect) {
           // Unauthorized - clear token and redirect to login
-          Cookies.remove('auth_token');
+          storage.clearAll();
           window.location.href = '/login';
         }
         return Promise.reject(error);

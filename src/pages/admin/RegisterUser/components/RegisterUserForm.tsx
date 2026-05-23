@@ -14,7 +14,7 @@ interface RegisterUserFormProps {
 }
 
 const selectBase =
-  'w-full rounded-lg border px-4 py-2.5 text-sm transition-all duration-200 bg-white text-slate-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-400 disabled:cursor-not-allowed disabled:bg-slate-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:disabled:bg-gray-900 border-blue-200/60 hover:border-blue-300/60 dark:hover:border-gray-500';
+  'w-full rounded border border-[var(--app-border)] bg-[var(--app-panel)] px-3 py-2 text-sm text-[var(--app-text)] transition-all duration-200 focus:border-[var(--app-accent)] focus:outline-none focus:ring-1 focus:ring-[var(--app-accent)] disabled:cursor-not-allowed disabled:bg-[var(--app-panel-muted)] disabled:text-[var(--app-muted)] hover:border-[var(--app-accent)]';
 
 export const RegisterUserForm = ({
   form,
@@ -31,9 +31,9 @@ export const RegisterUserForm = ({
   } = form;
 
   return (
-    <Card className="mx-auto w-full max-w-5xl border-0 shadow-lg p-4 sm:p-5">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-        <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2">
+    <Card className="mx-auto w-full max-w-5xl">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <div>
             <Input
               label="Full Name"
@@ -43,7 +43,7 @@ export const RegisterUserForm = ({
               error={errors.fullName?.message}
               autoComplete="name"
             />
-            <p className="mt-1.5 text-xs text-slate-500 dark:text-gray-400">First and last name</p>
+            <p className="mt-1.5 text-xs text-[var(--app-muted)]">First and last name</p>
           </div>
 
           <div>
@@ -55,7 +55,7 @@ export const RegisterUserForm = ({
               error={errors.email?.message}
               autoComplete="email"
             />
-            <p className="mt-1.5 text-xs text-slate-500 dark:text-gray-400">Work email address</p>
+            <p className="mt-1.5 text-xs text-[var(--app-muted)]">Work email address</p>
           </div>
 
           <div>
@@ -67,11 +67,11 @@ export const RegisterUserForm = ({
               error={errors.password?.message}
               autoComplete="new-password"
             />
-            <p className="mt-1.5 text-xs text-slate-500 dark:text-gray-400">Minimum 6 characters</p>
+            <p className="mt-1.5 text-xs text-[var(--app-muted)]">Minimum 6 characters</p>
           </div>
 
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-gray-300">User Role</label>
+            <label className="mb-1.5 block text-xs font-medium text-[var(--app-text-soft)]">User Role</label>
             <select
               {...register('role')}
               className={`${selectBase} ${errors.role ? 'border-rose-400 focus:ring-rose-400' : ''}`}
@@ -83,25 +83,25 @@ export const RegisterUserForm = ({
                 </option>
               ))}
             </select>
-            <p className="mt-1.5 text-xs text-slate-500 dark:text-gray-400">Permission level for this user</p>
-            {errors.role && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.role.message}</p>}
+            <p className="mt-1.5 text-xs text-[var(--app-muted)]">Permission level for this user</p>
+            {errors.role && <p className="mt-1 text-xs text-[var(--app-danger)]">{errors.role.message}</p>}
           </div>
         </div>
 
-        <div className="rounded-lg border border-blue-100/60 bg-white/70 p-4 backdrop-blur-sm dark:border-gray-700 dark:bg-gray-800/60">
+        <div className="border border-[var(--app-border)] bg-[var(--app-panel-muted)] p-3">
           {isSuperAdmin ? (
-            <p className="flex items-start text-sm text-slate-700 dark:text-gray-200">
-              <CheckCircle2 className="mr-2 mt-0.5 h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+            <p className="flex items-start text-xs text-[var(--app-text-soft)]">
+              <CheckCircle2 className="mr-2 mt-0.5 h-4 w-4 text-[var(--app-success)]" />
               SuperAdmin Access: You can assign Admin and Organization Admin roles.
             </p>
           ) : (
-            <p className="text-sm text-amber-700 dark:text-amber-300">
+            <p className="text-xs text-amber-500">
               Note: Only SuperAdmin users can create Admin and Organization Admin accounts.
             </p>
           )}
         </div>
 
-        <div className="flex flex-col gap-3 border-t border-blue-100/60 pt-4 sm:flex-row dark:border-gray-700">
+        <div className="flex flex-col gap-3 border-t border-[var(--app-border)] pt-4 sm:flex-row">
           <Button type="submit" variant="primary" size="md" isLoading={isLoading} className="min-w-[160px]">
             {isLoading ? 'Registering...' : 'Register User'}
           </Button>

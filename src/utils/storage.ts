@@ -6,7 +6,7 @@ const USER_EMAIL_KEY = 'user_email';
 
 export const storage = {
   setToken: (token: string) => {
-    Cookies.set(TOKEN_KEY, token, { expires: 7 }); // 7 days
+    Cookies.set(TOKEN_KEY, token, { expires: 7, sameSite: 'strict' });
   },
 
   getToken: (): string | undefined => {
@@ -14,7 +14,7 @@ export const storage = {
   },
 
   setUserRole: (role: string) => {
-    Cookies.set(USER_ROLE_KEY, role, { expires: 7 }); // 7 days
+    Cookies.set(USER_ROLE_KEY, role, { expires: 7, sameSite: 'strict' });
   },
 
   getUserRole: (): string | undefined => {
@@ -22,7 +22,7 @@ export const storage = {
   },
 
   setUserEmail: (email: string) => {
-    Cookies.set(USER_EMAIL_KEY, email, { expires: 7 }); // 7 days
+    Cookies.set(USER_EMAIL_KEY, email, { expires: 7, sameSite: 'strict' });
   },
 
   getUserEmail: (): string | undefined => {

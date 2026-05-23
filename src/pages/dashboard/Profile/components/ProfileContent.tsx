@@ -10,12 +10,12 @@ export const ProfileContent = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 text-sm text-[var(--app-text-soft)]">
       {/* Header */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100 sm:text-2xl">Profile</h1>
-          <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 sm:text-sm">
+          <h1 className="text-lg font-semibold text-[var(--app-text)]">Profile</h1>
+          <p className="mt-1 text-xs text-[var(--app-muted)]">
             View and manage your profile information
           </p>
         </div>
@@ -26,24 +26,24 @@ export const ProfileContent = () => {
       </div>
 
       {/* Profile Card */}
-      <Card className="border-0 shadow-lg p-4 sm:p-5">
+      <Card>
         <CardHeader className="mb-3">
           <CardTitle className="flex items-center gap-2 text-lg">
-            <User className="h-4 w-4 text-blue-600" />
+            <User className="h-4 w-4 text-[var(--app-accent)]" />
             Personal Information
           </CardTitle>
         </CardHeader>
         <div className="space-y-4">
           {/* Avatar Section */}
-          <div className="flex flex-col items-center gap-3 border-b border-gray-200 pb-4 dark:border-gray-700 sm:flex-row">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 text-xl font-bold text-white shadow-lg sm:h-20 sm:w-20">
+          <div className="flex flex-col items-center gap-3 border-b border-[var(--app-border)] pb-4 sm:flex-row">
+            <div className="flex h-14 w-14 items-center justify-center bg-[var(--app-accent)] text-lg font-semibold text-white sm:h-16 sm:w-16">
               {user?.email?.charAt(0).toUpperCase() || 'U'}
             </div>
             <div className="text-center sm:text-left">
-              <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100">
+              <h2 className="text-sm font-semibold text-[var(--app-text)]">
                 {user?.email?.split('@')[0] || 'User'}
               </h2>
-              <p className="text-xs text-gray-500 dark:text-gray-400">{user?.email || 'N/A'}</p>
+              <p className="text-xs text-[var(--app-muted)]">{user?.email || 'N/A'}</p>
             </div>
           </div>
 
@@ -51,14 +51,14 @@ export const ProfileContent = () => {
           <div className="grid gap-4 sm:grid-cols-2">
             {/* Email */}
             <div className="flex items-start gap-2.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-900/30 flex-shrink-0">
-                <Mail className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center bg-[var(--app-accent-soft)]">
+                <Mail className="h-4 w-4 text-[var(--app-accent)]" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                <p className="text-[10px] font-medium uppercase tracking-wide text-[var(--app-muted)]">
                   Email Address
                 </p>
-                <p className="mt-0.5 text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
+                <p className="mt-0.5 truncate text-sm font-medium text-[var(--app-text)]">
                   {user?.email || 'N/A'}
                 </p>
               </div>
@@ -66,14 +66,14 @@ export const ProfileContent = () => {
 
             {/* Role */}
             <div className="flex items-start gap-2.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-100 dark:bg-purple-900/30 flex-shrink-0">
-                <Shield className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center bg-[var(--app-accent-soft)]">
+                <Shield className="h-4 w-4 text-[var(--app-accent)]" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                <p className="text-[10px] font-medium uppercase tracking-wide text-[var(--app-muted)]">
                   Role
                 </p>
-                <p className="mt-0.5 text-sm font-medium capitalize text-gray-900 dark:text-gray-100">
+                <p className="mt-0.5 text-sm font-medium capitalize text-[var(--app-text)]">
                   {user?.role || 'N/A'}
                 </p>
               </div>
@@ -82,14 +82,14 @@ export const ProfileContent = () => {
             {/* User ID */}
             {user?.userId && (
               <div className="flex items-start gap-2.5">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-100 dark:bg-green-900/30 flex-shrink-0">
-                  <User className="h-4 w-4 text-green-600 dark:text-green-400" />
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center bg-[var(--app-accent-soft)]">
+                  <User className="h-4 w-4 text-[var(--app-accent)]" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-[10px] font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                  <p className="text-[10px] font-medium uppercase tracking-wide text-[var(--app-muted)]">
                     User ID
                   </p>
-                  <p className="mt-0.5 text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
+                  <p className="mt-0.5 truncate text-sm font-medium text-[var(--app-text)]">
                     {user.userId}
                   </p>
                 </div>
@@ -100,20 +100,20 @@ export const ProfileContent = () => {
       </Card>
 
       {/* Account Settings Card */}
-      <Card className="border-0 shadow-lg p-4 sm:p-5">
+      <Card>
         <CardHeader className="mb-3">
           <CardTitle className="flex items-center gap-2 text-lg">
-            <Shield className="h-4 w-4 text-blue-600" />
+            <Shield className="h-4 w-4 text-[var(--app-accent)]" />
             Account Settings
           </CardTitle>
         </CardHeader>
         <div className="space-y-3">
-          <div className="flex items-center justify-between rounded-lg border border-gray-200 p-3 dark:border-gray-700">
+          <div className="flex items-center justify-between border border-[var(--app-border)] p-3">
             <div>
-              <p className="text-sm font-medium text-gray-900 dark:text-gray-100">Account Status</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Your account is active</p>
+              <p className="text-sm font-medium text-[var(--app-text)]">Account Status</p>
+              <p className="text-xs text-[var(--app-muted)]">Your account is active</p>
             </div>
-            <span className="rounded-full bg-green-100 px-2.5 py-1 text-[10px] font-medium text-green-800 dark:bg-green-900/30 dark:text-green-400">
+            <span className="bg-emerald-500/10 px-2.5 py-1 text-[10px] font-medium text-[var(--app-success)]">
               Active
             </span>
           </div>

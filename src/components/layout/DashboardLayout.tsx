@@ -42,7 +42,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-bl from-slate-0 via-blue-100/60 to-purple-50/30 text-slate-800 transition-colors dark:bg-gray-950 dark:text-gray-100">
+    <div className="min-h-screen bg-[var(--app-bg)] text-[var(--app-text-soft)] transition-colors">
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div
@@ -66,40 +66,40 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
       </div>
 
       {/* Main content */}
-      <div className={`transition-all duration-300 ${isCollapsed ? 'min-[721px]:ml-16' : 'min-[721px]:ml-72'}`}>
+      <div className={`transition-all duration-300 ${isCollapsed ? 'min-[721px]:ml-14' : 'min-[721px]:ml-60'}`}>
         {/* Header - aligned with sidebar header */}
-        <header className="sticky top-0 z-30 h-[73px] border-b border-blue-100/60 bg-white/80 backdrop-blur-sm shadow-sm transition-colors dark:border-gray-700 dark:bg-gray-900">
-          <div className="flex h-full items-center justify-between px-4 sm:px-6">
-            <div className="flex items-center gap-3">
+        <header className="sticky top-0 z-30 h-14 border-b border-[var(--app-border)] bg-[var(--app-shell)]/95 backdrop-blur-sm transition-colors">
+          <div className="flex h-full items-center justify-between px-3 sm:px-4">
+            <div className="flex items-center gap-2">
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="rounded-lg p-2 text-slate-600 hover:bg-blue-50 dark:text-gray-400 dark:hover:bg-gray-800 lg:hidden transition-colors"
+                className="p-1.5 text-[var(--app-muted)] transition-colors hover:bg-[var(--app-hover)] hover:text-[var(--app-text)] lg:hidden"
                 aria-label="Toggle sidebar"
               >
-                {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                {sidebarOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
               </button>
-              <h2 className="text-base font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:text-gray-100 sm:text-lg">Welcome back</h2>
+              <h2 className="text-sm font-semibold text-[var(--app-text)]">LMS Console</h2>
             </div>
             <Link
               to="/home/profile"
-              className="flex items-center gap-2 rounded-lg px-3 py-2 transition-all hover:bg-blue-50/80 dark:hover:bg-gray-800 group"
+              className="group flex items-center gap-2 px-2 py-1.5 transition-all hover:bg-[var(--app-hover)]"
             >
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 text-white shadow-md transition-transform group-hover:scale-105 sm:h-10 sm:w-10">
-                <User className="h-4 w-4 sm:h-5 sm:w-5" />
+              <div className="flex h-7 w-7 items-center justify-center bg-[var(--app-accent)] text-white transition-transform group-hover:scale-105">
+                <User className="h-4 w-4" />
               </div>
               <div className="hidden text-right sm:block">
-                <p className="text-sm font-medium text-slate-700 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <p className="text-xs font-medium text-[var(--app-text)] transition-colors group-hover:text-[var(--app-accent)]">
                   {user?.email}
                 </p>
-                <p className="text-xs capitalize text-slate-500 dark:text-gray-400">{user?.role}</p>
+                <p className="text-[11px] capitalize text-[var(--app-muted)]">{user?.role}</p>
               </div>
-              <span className="sm:hidden text-sm font-medium text-slate-700 dark:text-gray-100">Profile</span>
+              <span className="text-xs font-medium text-[var(--app-text)] sm:hidden">Profile</span>
             </Link>
           </div>
         </header>
 
         {/* Main content area */}
-        <main className="p-4 sm:p-6 text-slate-800 dark:text-gray-100 min-h-[calc(100vh-73px)] dark-outlet-gradient">
+        <main className="min-h-[calc(100vh-56px)] bg-[var(--app-bg)] p-3 text-[var(--app-text-soft)] sm:p-4">
           {children ?? <Outlet />}
         </main>
       </div>

@@ -87,12 +87,12 @@ export const OTPInput = ({ length = 6, onComplete, disabled = false, className }
           disabled={disabled}
           className={cn(
             'h-12 w-12 rounded-lg border-2 text-center text-lg font-semibold transition-all',
-            'focus:outline-none focus:ring-2 focus:ring-blue-400',
+            'focus:outline-none focus:ring-1 focus:ring-[var(--app-accent)]',
             disabled
-              ? 'cursor-not-allowed bg-gray-100 text-gray-400 border-gray-200'
+              ? 'cursor-not-allowed border-[var(--app-border)] bg-[var(--app-panel-muted)] text-[var(--app-muted)]'
               : digit
-              ? 'border-blue-500 bg-blue-50 text-blue-700 dark:border-blue-400 dark:bg-blue-900/20 dark:text-blue-300'
-              : 'border-blue-200 bg-white text-gray-900 hover:border-blue-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100',
+              ? 'border-[var(--app-accent)] bg-[var(--app-accent-soft)] text-[var(--app-accent)]'
+              : 'border-[var(--app-border)] bg-[var(--app-panel)] text-[var(--app-text)] hover:border-[var(--app-accent)]',
           )}
         />
       ))}

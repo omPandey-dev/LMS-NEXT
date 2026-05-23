@@ -1,4 +1,4 @@
-import api from '../services/api';
+import api, { type ApiRequestConfig } from '../services/api';
 
 export interface User {
   id: string;
@@ -9,7 +9,9 @@ export interface User {
 
 export const usersApi = {
   getAllUsers: async (): Promise<User[]> => {
-    const response = await api.get<User[]>('/api/GetAllUsers');
+    const response = await api.get<User[]>('/api/GetAllUsers', {
+      skipAuthRedirect: true,
+    } as ApiRequestConfig);
     return response.data;
   },
 };

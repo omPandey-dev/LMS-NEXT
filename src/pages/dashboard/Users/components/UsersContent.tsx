@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Card, CardHeader, CardTitle } from '@/components/ui/Card';
 import { usersApi, type User } from '@/api/routes/users';
-import { Users as UsersIcon, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 export const UsersContent = () => {
@@ -26,74 +25,48 @@ export const UsersContent = () => {
   }, []);
 
   return (
-    <div className="space-y-4">
-      {/* Header */}
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100 sm:text-2xl">All Users</h1>
-          <p className="mt-1 text-xs text-gray-600 dark:text-gray-400 sm:text-sm">
-            View and manage all registered users
-          </p>
-        </div>
+    <div className="space-y-4 text-sm text-[var(--app-text-soft)]">
+      <div className="flex items-center justify-between">
+        <h1 className="text-lg font-semibold text-[var(--app-text)]">All Users</h1>
+        <span className="text-xs text-[var(--app-muted)]">{users.length} records</span>
       </div>
 
-      {/* Users Table Card */}
-      <Card className="border-0 shadow-lg p-4 sm:p-5">
-        <CardHeader className="mb-4">
-          <CardTitle className="flex items-center gap-2 text-lg">
-            <UsersIcon className="h-4 w-4 text-blue-600" />
-            Users List
-          </CardTitle>
-        </CardHeader>
+      <section className="rounded border border-[var(--app-border)] bg-[var(--app-panel)]">
+        <div className="border-b border-[var(--app-border)] px-4 py-3">
+          <h2 className="text-sm font-semibold text-[var(--app-text)]">Users</h2>
+        </div>
 
         {isLoading ? (
-          <div className="flex items-center justify-center py-12">
-            <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <div className="flex items-center justify-center py-10">
+            <Loader2 className="h-5 w-5 animate-spin text-[var(--app-accent)]" />
           </div>
         ) : users.length === 0 ? (
-          <div className="py-12 text-center">
-            <p className="text-gray-500 dark:text-gray-400">No users found</p>
-          </div>
+          <div className="py-10 text-center text-sm text-[var(--app-muted)]">No users found</div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr className="border-b border-gray-200 dark:border-gray-700">
-                  <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-300">
-                    ID
-                  </th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-300">
-                    Full Name
-                  </th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-300">
-                    Email
-                  </th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700 dark:text-gray-300">
-                    Phone Number
-                  </th>
+            <table className="w-full min-w-[720px] text-left text-xs">
+              <thead className="bg-[var(--app-panel-muted)] uppercase text-[var(--app-muted)]">
+                <tr>
+                  <th className="px-4 py-2.5 font-semibold">ID</th>
+                  <th className="px-4 py-2.5 font-semibold">Full Name</th>
+                  <th className="px-4 py-2.5 font-semibold">Email</th>
+                  <th className="px-4 py-2.5 font-semibold">Phone</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+              <tbody className="divide-y divide-[var(--app-border)]">
                 {users.map((user) => (
-                  <tr
-                    key={user.id}
-                    className="hover:bg-blue-50/50 dark:hover:bg-gray-800/50 transition-colors"
-                  >
-                    <td className="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">{user.id}</td>
-                    <td className="px-4 py-3 text-sm font-medium text-gray-900 dark:text-gray-100">
-                      {user.fullName || 'N/A'}
-                    </td>
-                    <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">{user.email}</td>
-                    <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">
-                      {user.phoneNumber || 'N/A'}
-                    </td>
+                  <tr key={user.id} className="hover:bg-[var(--app-hover)]">
+                    <td className="px-4 py-3 text-[var(--app-muted)]">{user.id}</td>
+                    <td className="px-4 py-3 font-medium text-[var(--app-text)]">{user.fullName || 'N/A'}</td>
+                    <td className="px-4 py-3">{user.email}</td>
+                    <td className="px-4 py-3">{user.phoneNumber || 'N/A'}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
         )}
-      </Card>
+      </section>
     </div>
   );
 };

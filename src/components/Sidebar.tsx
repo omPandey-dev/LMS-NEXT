@@ -40,29 +40,29 @@ export default function Sidebar({ userRole, onLogout, isCollapsed = false, onTog
 
   return (
     <aside 
-      className={`flex h-screen flex-col border-r border-blue-100/60 bg-white/95 backdrop-blur-sm text-slate-800 transition-all duration-300 ease-in-out dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 ${
-        isCollapsed ? 'w-16' : 'w-72'
-      } relative`}
+      className={`relative flex h-screen flex-col border-r border-[var(--app-border)] bg-[var(--app-shell)] text-[var(--app-text-soft)] transition-all duration-300 ease-in-out ${
+        isCollapsed ? 'w-14' : 'w-60'
+      }`}
     >
       {/* Header - aligned with main header */}
-      <div className={`h-[73px] border-b border-blue-100/60  dark:border-gray-700 dark:bg-gray-900 flex items-center transition-all duration-300 ${
-        isCollapsed ? 'justify-center px-0' : 'justify-between px-4 sm:px-6'
+      <div className={`flex h-14 items-center border-b border-[var(--app-border)] bg-[var(--app-shell)] transition-all duration-300 ${
+        isCollapsed ? 'justify-center px-0' : 'justify-between px-3'
       }`}>
         {/* Brand */}
         {!isCollapsed ? (
-          <div className="flex items-center gap-3 flex-1">
-            <div className="h-8 w-8 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center flex-shrink-0">
-              <span className="text-white font-bold text-sm">L</span>
+          <div className="flex flex-1 items-center gap-2">
+            <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center bg-[var(--app-accent)]">
+              <span className="text-xs font-bold text-white">L</span>
             </div>
             <div>
-              <h1 className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:text-gray-100 sm:text-xl">LMS Next</h1>
-              <p className="text-xs text-slate-500 dark:text-gray-400">Admin Panel</p>
+              <h1 className="text-sm font-semibold text-[var(--app-text)]">LMS Next</h1>
+              <p className="text-[11px] text-[var(--app-muted)]">Admin</p>
             </div>
           </div>
         ) : (
           <div className="flex items-center justify-center w-full">
-            <div className="h-8 w-8 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
-              <span className="text-white font-bold text-sm">L</span>
+            <div className="flex h-7 w-7 items-center justify-center bg-[var(--app-accent)]">
+              <span className="text-xs font-bold text-white">L</span>
             </div>
           </div>
         )}
@@ -71,23 +71,23 @@ export default function Sidebar({ userRole, onLogout, isCollapsed = false, onTog
         {onToggleCollapse && (
           <button
             onClick={onToggleCollapse}
-            className={`hidden min-[721px]:flex items-center justify-center w-7 h-7 rounded-lg hover:bg-blue-100/60 dark:hover:bg-gray-800 transition-colors flex-shrink-0 ${
+            className={`hidden h-6 w-6 flex-shrink-0 items-center justify-center text-[var(--app-muted)] transition-colors hover:bg-[var(--app-hover)] hover:text-[var(--app-text)] min-[721px]:flex ${
               isCollapsed ? 'absolute right-2' : ''
             }`}
             aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
             title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           >
             {isCollapsed ? (
-              <ChevronRight className="h-4 w-4 text-slate-600 dark:text-gray-400" />
+              <ChevronRight className="h-4 w-4" />
             ) : (
-              <ChevronLeft className="h-4 w-4 text-slate-600 dark:text-gray-400" />
+              <ChevronLeft className="h-4 w-4" />
             )}
           </button>
         )}
       </div>
 
-      <nav className={`flex-1 space-y-1 overflow-y-auto transition-all duration-300 ${
-        isCollapsed ? 'p-2' : 'p-3 sm:p-4'
+      <nav className={`flex-1 space-y-0.5 overflow-y-auto transition-all duration-300 ${
+        isCollapsed ? 'p-1.5' : 'p-2.5'
       }`}>
         {allowedItems.map((item) => {
           const Icon = iconMap[item.icon];
@@ -109,18 +109,18 @@ export default function Sidebar({ userRole, onLogout, isCollapsed = false, onTog
                 }}
                 onMouseEnter={() => isCollapsed && setHoveredItem(item.path)}
                 onMouseLeave={() => isCollapsed && setHoveredItem(null)}
-                className={`flex items-center gap-3 rounded-lg text-sm transition-all group relative ${
+                className={`group relative flex items-center gap-2.5 text-xs transition-all ${
                   isCollapsed 
-                    ? 'justify-center px-2 py-2.5' 
-                    : 'px-3 py-2.5 sm:px-4'
+                    ? 'justify-center px-2 py-2' 
+                    : 'px-3 py-2'
                 } ${
                   isActive
-                    ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-md'
-                    : 'text-slate-700 hover:bg-blue-50/60 dark:text-gray-200 dark:hover:bg-gray-800'
+                    ? 'bg-[var(--app-accent)] text-white shadow-md'
+                    : 'text-[var(--app-text-soft)] hover:bg-[var(--app-hover)] hover:text-[var(--app-text)]'
                 }`}
               >
                 <Icon className={`flex-shrink-0 ${
-                  isCollapsed ? 'h-5 w-5' : 'h-4 w-4'
+                  isCollapsed ? 'h-4 w-4' : 'h-3.5 w-3.5'
                 }`} />
                 {!isCollapsed && (
                   <span className="truncate font-medium">{item.label}</span>
@@ -128,7 +128,7 @@ export default function Sidebar({ userRole, onLogout, isCollapsed = false, onTog
               </Link>
               {/* Tooltip card for collapsed state */}
               {isCollapsed && hoveredItem === item.path && (
-                <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm font-medium rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-50 whitespace-nowrap pointer-events-none">
+                <div className="pointer-events-none absolute left-full top-1/2 z-50 ml-2 -translate-y-1/2 whitespace-nowrap border border-[var(--app-border)] bg-[var(--app-panel)] px-3 py-2 text-sm font-medium text-[var(--app-text)] shadow-lg">
                   {item.label}
                 </div>
               )}
@@ -137,14 +137,14 @@ export default function Sidebar({ userRole, onLogout, isCollapsed = false, onTog
         })}
       </nav>
 
-      <div className={`space-y-1 border-t border-blue-100/60 dark:border-gray-700 transition-all duration-300 ${
-        isCollapsed ? 'p-2' : 'p-3 sm:p-4'
+      <div className={`space-y-0.5 border-t border-[var(--app-border)] transition-all duration-300 ${
+        isCollapsed ? 'p-1.5' : 'p-2.5'
       }`}>
         <div className="relative">
           <Button
             variant="ghost"
-            className={`w-full text-slate-700 hover:bg-purple-50/60 dark:text-gray-100 dark:hover:bg-gray-800 transition-colors ${
-              isCollapsed ? 'justify-center px-2 py-2.5' : 'justify-start px-3 py-2.5 sm:px-4'
+            className={`w-full text-[var(--app-text-soft)] transition-colors hover:bg-[var(--app-hover)] hover:text-[var(--app-text)] ${
+              isCollapsed ? 'justify-center px-2 py-2' : 'justify-start px-3 py-2 text-xs'
             }`}
             onClick={toggleTheme}
             onMouseEnter={() => isCollapsed && setHoveredItem('theme')}
@@ -152,9 +152,9 @@ export default function Sidebar({ userRole, onLogout, isCollapsed = false, onTog
             title={isCollapsed ? `Switch to ${theme === 'light' ? 'Dark' : 'Light'} Theme` : ''}
           >
             {theme === 'light' ? (
-              <Moon className={`flex-shrink-0 ${isCollapsed ? 'h-5 w-5' : 'h-4 w-4'}`} />
+              <Moon className={`flex-shrink-0 ${isCollapsed ? 'h-4 w-4' : 'h-3.5 w-3.5'}`} />
             ) : (
-              <Sun className={`flex-shrink-0 ${isCollapsed ? 'h-5 w-5' : 'h-4 w-4'}`} />
+              <Sun className={`flex-shrink-0 ${isCollapsed ? 'h-4 w-4' : 'h-3.5 w-3.5'}`} />
             )}
             {!isCollapsed && (
               <>
@@ -164,7 +164,7 @@ export default function Sidebar({ userRole, onLogout, isCollapsed = false, onTog
             )}
           </Button>
           {isCollapsed && hoveredItem === 'theme' && (
-            <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm font-medium rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-50 whitespace-nowrap pointer-events-none">
+            <div className="pointer-events-none absolute left-full top-1/2 z-50 ml-2 -translate-y-1/2 whitespace-nowrap border border-[var(--app-border)] bg-[var(--app-panel)] px-3 py-2 text-sm font-medium text-[var(--app-text)] shadow-lg">
               Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme
             </div>
           )}
@@ -172,19 +172,19 @@ export default function Sidebar({ userRole, onLogout, isCollapsed = false, onTog
         <div className="relative">
           <Button
             variant="ghost"
-            className={`w-full text-rose-500 hover:bg-rose-50 dark:text-red-400 dark:hover:bg-red-950/40 transition-colors ${
-              isCollapsed ? 'justify-center px-2 py-2.5' : 'justify-start px-3 py-2.5 sm:px-4'
+            className={`w-full text-[var(--app-danger)] transition-colors hover:bg-rose-500/10 ${
+              isCollapsed ? 'justify-center px-2 py-2' : 'justify-start px-3 py-2 text-xs'
             }`}
             onClick={onLogout}
             onMouseEnter={() => isCollapsed && setHoveredItem('logout')}
             onMouseLeave={() => isCollapsed && setHoveredItem(null)}
             title={isCollapsed ? 'Logout' : ''}
           >
-            <LogOut className={`flex-shrink-0 ${isCollapsed ? 'h-5 w-5' : 'h-4 w-4'}`} />
+            <LogOut className={`flex-shrink-0 ${isCollapsed ? 'h-4 w-4' : 'h-3.5 w-3.5'}`} />
             {!isCollapsed && <span className="ml-2 font-medium">Logout</span>}
           </Button>
           {isCollapsed && hoveredItem === 'logout' && (
-            <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-3 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm font-medium rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-50 whitespace-nowrap pointer-events-none">
+            <div className="pointer-events-none absolute left-full top-1/2 z-50 ml-2 -translate-y-1/2 whitespace-nowrap border border-[var(--app-border)] bg-[var(--app-panel)] px-3 py-2 text-sm font-medium text-[var(--app-text)] shadow-lg">
               Logout
             </div>
           )}

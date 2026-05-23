@@ -2,10 +2,9 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import type { LoginFormData } from '../schemas/loginSchema';
-import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import { Card, CardHeader, CardTitle } from '@/components/ui/Card';
-import { LogIn, Eye, EyeOff } from 'lucide-react';
+import { cn } from '@/utils/cn';
+import { Eye, EyeOff, GraduationCap, UserRound } from 'lucide-react';
 
 interface LoginFormProps {
   form: ReturnType<typeof useForm<LoginFormData>>;
@@ -15,6 +14,7 @@ interface LoginFormProps {
 
 export const LoginForm = ({ form, onSubmit, isLoading }: LoginFormProps) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [role, setRole] = useState<'admin' | 'instructor'>('admin');
   const {
     register,
     handleSubmit,
@@ -22,64 +22,92 @@ export const LoginForm = ({ form, onSubmit, isLoading }: LoginFormProps) => {
   } = form;
 
   return (
-    <Card className="border-0 shadow-xl">
-      <CardHeader>
-        <CardTitle className="text-xl">Login</CardTitle>
-      </CardHeader>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+    <div className="w-full max-w-sm">
+      <div className="mb-7 text-center">
+        <h1 className="text-2xl font-semibold text-[var(--app-text)]">Welcome to LMS!</h1>
+      </div>
+
+      <div className="mb-7 grid grid-cols-2 gap-5">
+        <button
+          type="button"
+          onClick={() => setRole('admin')}
+          className={cn(
+            'flex h-28 flex-col items-center justify-center rounded border bg-[var(--app-panel)] text-xs font-medium text-[var(--app-text-soft)] shadow-sm transition-all hover:-translate-y-0.5',
+            role === 'admin' ? 'border-[var(--app-accent)] ring-2 ring-[var(--app-accent)]/15' : 'border-[var(--app-border)]',
+          )}
+          aria-pressed={role === 'admin'}
+        >
+          <span className="mb-3 flex h-14 w-16 items-center justify-center bg-[var(--app-accent-soft)] text-[var(--app-accent)]">
+            <UserRound className="h-9 w-9" />
+          </span>
+          Admin
+        </button>
+        <button
+          type="button"
+          onClick={() => setRole('instructor')}
+          className={cn(
+            'flex h-28 flex-col items-center justify-center rounded border bg-[var(--app-panel)] text-xs font-medium text-[var(--app-text-soft)] shadow-sm transition-all hover:-translate-y-0.5',
+            role === 'instructor' ? 'border-[var(--app-accent)] ring-2 ring-[var(--app-accent)]/15' : 'border-[var(--app-border)]',
+          )}
+          aria-pressed={role === 'instructor'}
+        >
+          <span className="mb-3 flex h-14 w-16 items-center justify-center bg-[var(--app-accent-soft)] text-[var(--app-accent)]">
+            <GraduationCap className="h-9 w-9" />
+          </span>
+          Instructor
+        </button>
+      </div>
+
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3.5">
         <Input
-          label="Email"
           type="email"
-          placeholder="you@example.com"
+          placeholder="Enter your email address"
           {...register('email')}
           error={errors.email?.message}
           autoComplete="email"
+          className="h-10"
         />
 
         <div className="relative">
           <Input
-            label="Password"
             type={showPassword ? 'text' : 'password'}
-            placeholder="••••••••"
+            placeholder="Enter password"
             {...register('password')}
             error={errors.password?.message}
             autoComplete="current-password"
-            className="pr-10"
+            className="h-10 pr-10"
           />
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-[38px] text-slate-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 dark:text-gray-400 dark:hover:text-gray-300 transition-colors"
+            className="absolute right-3 top-2.5 text-[var(--app-muted)] transition-colors hover:text-[var(--app-accent)] focus:outline-none focus:text-[var(--app-accent)]"
             aria-label={showPassword ? 'Hide password' : 'Show password'}
           >
             {showPassword ? (
-              <EyeOff className="h-5 w-5" />
+              <EyeOff className="h-4 w-4" />
             ) : (
-              <Eye className="h-5 w-5" />
+              <Eye className="h-4 w-4" />
             )}
           </button>
         </div>
 
-        <Button type="submit" variant="primary" size="lg" isLoading={isLoading} className="w-full">
-          <LogIn className="w-5 h-5 mr-2" />
-          Sign In
-        </Button>
-      </form>
-
-      <div className="mt-6 space-y-3 text-center">
-        <Link
-          to="/forgot-password"
-          className="block text-sm text-blue-600 hover:text-purple-600 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors"
-        >
-          Forgot Password?
-        </Link>
-        <p className="text-sm text-slate-600 dark:text-gray-400">
-          Don't have an account?{' '}
-          <Link to="/register" className="text-blue-600 hover:text-purple-600 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors">
-            Sign up
+        <div className="pt-1 text-right">
+          <Link
+            to="/forgot-password"
+            className="text-xs font-medium text-[var(--app-muted)] transition-colors hover:text-[var(--app-accent)]"
+          >
+            Forgot password?
           </Link>
-        </p>
-      </div>
-    </Card>
+        </div>
+
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="mt-2 h-10 w-full bg-[var(--app-accent)] text-sm font-semibold text-white transition-colors hover:brightness-95 focus:outline-none focus:ring-1 focus:ring-[var(--app-accent)] disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {isLoading ? 'Signing in...' : 'Login'}
+        </button>
+      </form>
+    </div>
   );
 };

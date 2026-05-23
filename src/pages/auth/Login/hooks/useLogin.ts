@@ -21,7 +21,7 @@ export const useLogin = () => {
     try {
       await login(data.email, data.password);
       toast.success('Login successful!');
-      navigate('/dashboard');
+      navigate('/home/dashboard', { replace: true });
     } catch (error: any) {
       loginApi.handleError(error);
     } finally {
